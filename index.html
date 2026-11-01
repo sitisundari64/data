@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5146b5">
+<title>Media Interaktif TKA Matematika Kelas IX</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+tailwind.config = {
+ theme: {
+  extend: {
+   colors: {
+    primary:'#5146b5',
+    purplelight:'#eeeaff',
+    coral:'#ff817c',
+    yellow:'#ffd66b',
+    mint:'#6ed9bc',
+    ink:'#29264a'
+   },
+   fontFamily:{
+    nunito:['Nunito','sans-serif'],
+    fredoka:['Fredoka','sans-serif']
+   }
+  }
+ }
+}
+</script>
+
+<style>
+:root {
+ --primary:#5146b5;
+ --purple:#eeeaff;
+ --coral:#ff817c;
+ --yellow:#ffd66b;
+ --mint:#6ed9bc;
+ --ink:#29264a;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:'Nunito',sans-serif;
+ background:#f6f5ff;
+ color:var(--ink);
+}
+h1,h2,h3,.display{font-family:'Fredoka',sans-serif}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.6}
+.page{display:none;animation:fadeIn .35s ease}
+.page.active{display:block}
+@keyframes fadeIn{
+ from{opacity:0;transform:translateY(10px)}
+ to{opacity:1;transform:translateY(0)}
+}
+.card{
+ background:white;
+ border:1px solid #eeeafa;
+ border-radius:22px;
+ box-shadow:0 5px 20px rgba(75,65,140,.06);
+}
+.menu-card{
+ transition:.25s;
+ cursor:pointer;
+}
+.menu-card:hover{
+ transform:translateY(-6px);
+ box-shadow:0 12px 25px rgba(75,65,140,.13);
+}
+.btn-primary{
+ background:var(--primary);
+ color:white;
+ border-radius:14px;
+ padding:12px 22px;
+ font-weight:900;
+ transition:.2s;
+}
+.btn-primary:hover{background:#39318e;transform:translateY(-2px)}
+.btn-soft{
+ background:#eeeaff;
+ color:var(--primary);
+ border-radius:12px;
+ padding:10px 17px;
+ font-weight:900;
+}
+.navitem{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ width:100%;
+ padding:12px 14px;
+ border-radius:13px;
+ color:#686486;
+ font-weight:800;
+ text-align:left;
+ transition:.2s;
+}
+.navitem:hover,.navitem.selected{
+ background:#eeeaff;
+ color:var(--primary);
+}
+.iconbox{
+ width:48px;height:48px;
+ display:flex;align-items:center;justify-content:center;
+ border-radius:16px;font-size:21px;
+ flex-shrink:0;
+}
+.gradient-hero{
+ background:linear-gradient(125deg,#5146b5,#8878e9);
+ color:white;
+}
+.tab-btn{
+ padding:11px 17px;
+ border-radius:12px;
+ font-weight:900;
+ background:#f1efff;
+ color:#69628e;
+ white-space:nowrap;
+}
+.tab-btn.active{background:var(--primary);color:white}
+.tab-content{display:none}
+.tab-content.active{display:block;animation:fadeIn .3s}
+.answer-option{
+ width:100%;
+ border:2px solid #eeeafa;
+ border-radius:14px;
+ padding:13px 15px;
+ text-align:left;
+ margin-bottom:10px;
+ background:white;
+ font-weight:800;
+ transition:.2s;
+}
+.answer-option:hover{border-color:#8173df;background:#f8f6ff}
+.answer-option.correct{background:#e1fff2;border-color:#36bd89;color:#147d56}
+.answer-option.wrong{background:#fff0ef;border-color:#ff817c;color:#c24b47}
+.answer-option:disabled{opacity:1}
+.bar{
+ background:linear-gradient(180deg,#8f83ed,#5146b5);
+ border-radius:10px 10px 3px 3px;
+ min-width:24px;
+ transition:height .4s;
+}
+.sticky{
+ background:#fff6bd;
+ border-radius:5px 5px 18px 5px;
+ padding:15px;
+ box-shadow:3px 5px 12px #b6a96a35;
+ transform:rotate(-1deg);
+ overflow-wrap:anywhere;
+}
+.sticky:nth-child(even){background:#dffff3;transform:rotate(1deg)}
+.sticky:nth-child(3n){background:#ffe4e2}
+.progress-track{
+ background:#e9e7f4;
+ height:10px;
+ border-radius:20px;
+ overflow:hidden;
+}
+.progress-fill{
+ background:linear-gradient(90deg,#5146b5,#a18cf7);
+ height:100%;
+ border-radius:20px;
+ transition:.3s;
+}
+input,textarea,select{
+ outline:none;
+}
+input:focus,textarea:focus,select:focus{
+ border-color:#8173df!important;
+ box-shadow:0 0 0 3px #eeeaff;
+}
+.badge{
+ display:inline-block;
+ padding:5px 11px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:900;
+}
+.level-card{
+ border:2px solid #eeeafa;
+ border-radius:20px;
+ padding:20px;
+ transition:.2s;
+ cursor:pointer;
+}
+.level-card:hover{border-color:var(--primary);transform:translateY(-4px)}
+.level-card.chosen{border-color:var(--primary);background:#f5f2ff}
+.game-item{
+ padding:13px;
+ border:2px solid #e9e6f5;
+ border-radius:14px;
+ background:white;
+ cursor:pointer;
+ font-weight:900;
+ transition:.2s;
+}
+.game-item.active{border-color:var(--primary);background:#eeeaff}
+.game-item.matched{border-color:#39bc8a;background:#e1fff2;color:#147d56;cursor:default}
+table{border-collapse:collapse;width:100%}
+th,td{padding:11px;text-align:center;border-bottom:1px solid #eeeafa}
+th{background:#f0edff;color:#5146b5}
+#certificate{
+ background:white;
+ border:10px double #5146b5;
+ padding:35px;
+ text-align:center;
+ max-width:700px;
+ margin:auto;
+}
+#certificate h2{color:#5146b5}
+@media(max-width:767px){
+ .sidebar{display:none}
+ .mobile-nav{display:flex}
+ .main-content{padding:16px}
+ .hero-title{font-size:34px}
+}
+@media(min-width:768px){
+ .mobile-nav{display:none}
+ .sidebar{display:block}
+ .main-content{margin-left:255px;padding:28px 35px}
+}
+@media print{
+ body *{visibility:hidden}
+ #certificate,#certificate *{visibility:visible}
+ #certificate{position:absolute;left:0;top:0;width:100%;max-width:none}
+ .no-print{display:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="gradient-hero sticky top-0 z-40 shadow-lg">
+ <div class="max-w-[1500px] mx-auto px-4 py-3 flex items-center justify-between gap-3">
+  <div class="flex items-center gap-3">
+   <div class="bg-white/20 rounded-xl w-11 h-11 flex items-center justify-center text-xl">
+    <i class="fa-solid fa-chart-column"></i>
+   </div>
+   <div>
+    <h1 class="text-lg md:text-xl font-bold">MATH<span class="text-yellow-300">LAB</span></h1>
+    <p class="text-[10px] md:text-xs text-purple-100 font-bold">TKA MATEMATIKA • KELAS IX</p>
+   </div>
+  </div>
+
+  <div class="hidden md:block text-center">
+   <div class="font-black text-sm">PENGOLAHAN DATA & STATISTIKA</div>
+   <div class="text-xs text-purple-200">Belajar • Bereksplorasi • Bernalar</div>
+  </div>
+
+  <div class="flex gap-2">
+   <button onclick="goHome()" class="bg-white/20 hover:bg-white/30 rounded-xl px-3 py-2 text-sm font-bold">
+    <i class="fa-solid fa-house"></i> <span class="hidden sm:inline">Home</span>
+   </button>
+   <button id="audioButton" onclick="toggleAudio()" class="bg-yellow-300 text-purple-900 rounded-xl px-3 py-2 font-black text-sm">
+    <i class="fa-solid fa-volume-high"></i> <span id="audioText">Audio ON</span>
+   </button>
+  </div>
+ </div>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="sidebar fixed top-[72px] bottom-0 left-0 w-[255px] bg-white border-r border-purple-100 p-4 overflow-y-auto z-30">
+ <div class="text-[10px] font-black uppercase tracking-widest text-gray-400 px-3 mb-3">Menu Pembelajaran</div>
+ <nav id="sideMenu"></nav>
+ <div class="mt-6 bg-purple-50 p-4 rounded-2xl">
+  <div class="text-2xl mb-2">🌟</div>
+  <div class="font-black text-sm">Semangat Belajar!</div>
+  <p class="text-xs text-gray-500 mt-1">Setiap data memiliki cerita. Temukan maknanya!</p>
+ </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content min-h-screen pb-28 md:pb-12">
+
+<!-- HOME -->
+<section id="home" class="page active">
+ <div class="gradient-hero rounded-[28px] p-6 md:p-10 relative overflow-hidden">
+  <div class="absolute -right-10 -top-10 w-48 h-48 bg-white/10 rounded-full"></div>
+  <div class="absolute right-24 bottom-[-80px] w-52 h-52 bg-white/10 rounded-full"></div>
+
+  <div class="relative z-10 grid md:grid-cols-2 items-center gap-7">
+   <div>
+    <span class="badge bg-yellow-300 text-purple-900">🚀 DIGITAL LEARNING EXPERIENCE</span>
+    <h2 class="hero-title text-4xl md:text-5xl font-bold leading-tight mt-5">
+     DATA DI SEKITAR KITA!
+    </h2>
+    <p class="text-purple-100 mt-4 leading-relaxed">
+     Yuk, menjadi detektif data! Pelajari diagram, rata-rata, median, dan modus melalui aktivitas seru dan tantangan TKA Matematika.
+    </p>
+    <div class="flex flex-wrap gap-3 mt-6">
+     <button onclick="showPage('tujuan')" class="bg-yellow-300 text-purple-950 rounded-xl px-6 py-3 font-black hover:scale-105 transition">
+      Mulai Belajar <i class="fa-solid fa-arrow-right ml-2"></i>
+     </button>
+     <button onclick="showPage('materi')" class="bg-white/20 rounded-xl px-5 py-3 font-bold">
+      <i class="fa-solid fa-book-open"></i> Lihat Materi
+     </button>
+    </div>
+   </div>
+
+   <div class="relative flex justify-center">
+    <img
+     src="https://i.ibb.co.com/hFJHmgp2/Desain-tanpa-judul-9.png"
+     alt="Ilustrasi pembelajaran matematika"
+     class="w-full max-w-[390px] rounded-3xl object-contain drop-shadow-2xl"
+     onerror="this.style.display='none';document.getElementById('fallbackArt').style.display='block'">
+    <div id="fallbackArt" style="display:none" class="text-center text-8xl">👩‍🏫📊</div>
+   </div>
+  </div>
+ </div>
+
+ <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+  <div class="card p-4"><div class="text-2xl">📊</div><div class="font-black mt-2">Diagram</div><p class="text-xs text-gray-500">Batang & garis</p></div>
+  <div class="card p-4"><div class="text-2xl">🧮</div><div class="font-black mt-2">Mean</div><p class="text-xs text-gray-500">Nilai rata-rata</p></div>
+  <div class="card p-4"><div class="text-2xl">🎯</div><div class="font-black mt-2">Median</div><p class="text-xs text-gray-500">Nilai tengah</p></div>
+  <div class="card p-4"><div class="text-2xl">🏆</div><div class="font-black mt-2">Modus</div><p class="text-xs text-gray-500">Paling sering muncul</p></div>
+ </div>
+
+ <h3 class="text-xl font-bold mt-8 mb-4">Jelajahi Pembelajaran</h3>
+ <div id="homeCards" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+
+ <div class="card p-5 mt-7">
+  <h3 class="font-bold text-lg"><i class="fa-solid fa-circle-info text-purple-600"></i> Petunjuk Penggunaan</h3>
+  <div class="grid md:grid-cols-3 gap-4 mt-4 text-sm">
+   <div><b>01. Jelajahi</b><p class="text-gray-500 mt-1">Pilih menu yang ingin dipelajari.</p></div>
+   <div><b>02. Praktikkan</b><p class="text-gray-500 mt-1">Gunakan simulasi dan permainan.</p></div>
+   <div><b>03. Evaluasi</b><p class="text-gray-500 mt-1">Kerjakan kuis dan refleksikan hasil belajar.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- TUJUAN -->
+<section id="tujuan" class="page">
+ <div class="mb-6">
+  <span class="badge bg-purple-100 text-purple-700">01 • LEARNING OBJECTIVES</span>
+  <h2 class="text-3xl font-bold mt-3">Tujuan Pembelajaran 🎯</h2>
+  <p class="text-gray-500 mt-2">Kompetensi yang akan kamu kuasai setelah mengikuti pembelajaran.</p>
+ </div>
+
+ <div class="gradient-hero p-6 rounded-3xl mb-6">
+  <h3 class="text-xl font-bold">Misi Detektif Data</h3>
+  <p class="text-purple-100 mt-2">Mengumpulkan, menyajikan, membaca, dan menganalisis data untuk mengambil keputusan berdasarkan informasi.</p>
+ </div>
+
+ <div class="grid md:grid-cols-2 gap-4">
+  <div class="card p-5">
+   <div class="iconbox bg-purple-100 text-purple-700 mb-3"><i class="fa-solid fa-chart-simple"></i></div>
+   <h3 class="font-bold">1. Menyajikan Data</h3>
+   <p class="text-sm text-gray-500 mt-2">Siswa mampu mengorganisasi data dari tabel dan menyajikan sebagian data dalam diagram batang atau diagram garis secara tepat.</p>
+  </div>
+  <div class="card p-5">
+   <div class="iconbox bg-green-100 text-green-700 mb-3"><i class="fa-solid fa-calculator"></i></div>
+   <h3 class="font-bold">2. Menghitung Mean</h3>
+   <p class="text-sm text-gray-500 mt-2">Siswa mampu menentukan rata-rata suatu kumpulan data dan menggunakannya untuk menyelesaikan permasalahan kontekstual.</p>
+  </div>
+  <div class="card p-5">
+   <div class="iconbox bg-yellow-100 text-yellow-700 mb-3"><i class="fa-solid fa-bullseye"></i></div>
+   <h3 class="font-bold">3. Menentukan Median</h3>
+   <p class="text-sm text-gray-500 mt-2">Siswa mampu mengurutkan data dan menentukan nilai tengah untuk jumlah data ganjil maupun genap.</p>
+  </div>
+  <div class="card p-5">
+   <div class="iconbox bg-pink-100 text-pink-700 mb-3"><i class="fa-solid fa-ranking-star"></i></div>
+   <h3 class="font-bold">4. Menentukan Modus</h3>
+   <p class="text-sm text-gray-500 mt-2">Siswa mampu mengidentifikasi nilai atau kategori dengan frekuensi tertinggi dalam informasi yang disajikan.</p>
+  </div>
+  <div class="card p-5 md:col-span-2">
+   <div class="iconbox bg-blue-100 text-blue-700 mb-3"><i class="fa-solid fa-brain"></i></div>
+   <h3 class="font-bold">5. Bernalar dan Memecahkan Masalah</h3>
+   <p class="text-sm text-gray-500 mt-2">Siswa mampu merumuskan pertanyaan untuk memperoleh data, menafsirkan hasil pengolahan data, dan menggunakan informasi statistik untuk mengambil keputusan secara logis.</p>
+  </div>
+ </div>
+
+ <div class="card p-5 mt-6">
+  <h3 class="font-bold">Kriteria Keberhasilan</h3>
+  <p class="text-sm text-gray-500 mt-2">Kamu dinyatakan mencapai target pembelajaran apabila mampu menyajikan data dengan tepat, menyelesaikan perhitungan mean, median, dan modus, serta memberikan alasan atas keputusan berdasarkan data.</p>
+ </div>
+</section>
+
+<!-- PEMANTIK -->
+<section id="pemantik" class="page">
+ <span class="badge bg-yellow-100 text-yellow-800">02 • THINK & WONDER</span>
+ <h2 class="text-3xl font-bold mt-3">Pertanyaan Pemantik 💡</h2>
+ <p class="text-gray-500 mt-2 mb-6">Amati fenomena berikut. Klik kartu untuk menemukan pertanyaan tantangannya.</p>
+
+ <div class="grid md:grid-cols-2 gap-5">
+  <div class="card overflow-hidden">
+   <div class="bg-purple-100 p-8 text-center text-7xl">📱📊</div>
+   <div class="p-5">
+    <h3 class="text-xl font-bold">Fenomena 1: Waktu Layar</h3>
+    <p class="text-sm text-gray-500 mt-2">Lima siswa mencatat waktu penggunaan gawai dalam sehari: 2, 3, 3, 4, dan 8 jam.</p>
+    <button onclick="reveal('reveal1')" class="btn-primary mt-4 w-full">Buka Tantangan <i class="fa-solid fa-eye ml-2"></i></button>
+    <div id="reveal1" class="hidden bg-purple-50 rounded-xl p-4 mt-4 text-sm">
+     <b>🤔 Pertanyaan:</b><br>
+     Apakah rata-rata waktu layar sudah mewakili kebiasaan sebagian besar siswa? Bagaimana jika ada satu siswa yang menggunakan gawai selama 8 jam?
+    </div>
+   </div>
+  </div>
+
+  <div class="card overflow-hidden">
+   <div class="bg-yellow-100 p-8 text-center text-7xl">🍜🥤🍛</div>
+   <div class="p-5">
+    <h3 class="text-xl font-bold">Fenomena 2: Kantin Sekolah</h3>
+    <p class="text-sm text-gray-500 mt-2">Kantin ingin menyediakan makanan yang paling disukai siswa berdasarkan hasil survei pilihan menu.</p>
+    <button onclick="reveal('reveal2')" class="btn-primary mt-4 w-full">Buka Tantangan <i class="fa-solid fa-eye ml-2"></i></button>
+    <div id="reveal2" class="hidden bg-yellow-50 rounded-xl p-4 mt-4 text-sm">
+     <b>🤔 Pertanyaan:</b><br>
+     Bagaimana cara menentukan menu paling populer? Apakah mean, median, atau modus yang paling tepat untuk data kategori makanan?
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="card p-5 mt-6">
+  <h3 class="font-bold">🧘 Aktivitas Mindfulness: Amati – Pikirkan – Hubungkan</h3>
+  <p class="text-sm text-gray-500 mt-2">Tarik napas perlahan. Perhatikan benda atau kegiatan di sekitarmu yang menghasilkan data. Pikirkan bagaimana data tersebut bisa membantu mengambil keputusan.</p>
+  <div class="grid grid-cols-3 gap-2 mt-4 text-center">
+   <div class="bg-purple-50 rounded-xl p-3"><div class="text-2xl">👀</div><b class="text-sm">Amati</b></div>
+   <div class="bg-yellow-50 rounded-xl p-3"><div class="text-2xl">💭</div><b class="text-sm">Pikirkan</b></div>
+   <div class="bg-green-50 rounded-xl p-3"><div class="text-2xl">🔗</div><b class="text-sm">Hubungkan</b></div>
+  </div>
+ </div>
+</section>
+
+<!-- MATERI -->
+<section id="materi" class="page">
+ <span class="badge bg-purple-100 text-purple-700">03 • EXPLORE KNOWLEDGE</span>
+ <h2 class="text-3xl font-bold mt-3">Materi Belajar 📚</h2>
+ <p class="text-gray-500 mt-2 mb-5">Pelajari setiap konsep secara bertahap.</p>
+
+ <div class="flex gap-2 overflow-x-auto pb-3 mb-4">
+  <button class="tab-btn active" onclick="openTab('tab1',this)">📊 Penyajian Data</button>
+  <button class="tab-btn" onclick="openTab('tab2',this)">➗ Mean</button>
+  <button class="tab-btn" onclick="openTab('tab3',this)">🎯 Median</button>
+  <button class="tab-btn" onclick="openTab('tab4',this)">🏆 Modus</button>
+  <button class="tab-btn" onclick="openTab('tab5',this)">🧠 Interpretasi</button>
+ </div>
+
+ <div id="tab1" class="tab-content active">
+  <div class="card p-6">
+   <h3 class="text-xl font-bold">A. Penyajian Data</h3>
+   <div class="text-6xl text-center my-5">📊</div>
+   <p class="text-gray-600">Data adalah kumpulan informasi atau fakta yang diperoleh melalui pengamatan, pengukuran, wawancara, atau survei.</p>
+   <h4 class="font-black mt-5">1. Diagram Batang</h4>
+   <p class="text-sm text-gray-500 mt-2">Digunakan untuk membandingkan jumlah atau frekuensi antar kategori. Tinggi batang menunjukkan nilai frekuensi.</p>
+   <div class="bg-purple-50 rounded-xl p-4 mt-4">
+    <b class="text-sm">Contoh: Hobi siswa</b>
+    <div class="flex items-end justify-around gap-3 h-40 mt-4" id="exampleBars"></div>
+    <div class="flex justify-around text-xs font-bold mt-2"><span>Membaca</span><span>Olahraga</span><span>Musik</span><span>Game</span></div>
+   </div>
+   <h4 class="font-black mt-5">2. Diagram Garis</h4>
+   <p class="text-sm text-gray-500 mt-2">Digunakan untuk menunjukkan perubahan data secara berurutan, terutama berdasarkan waktu.</p>
+   <div class="bg-blue-50 rounded-xl p-4 mt-4">
+    <b class="text-sm">Contoh: Suhu selama 5 hari</b>
+    <svg viewBox="0 0 320 150" class="w-full mt-3">
+     <polyline points="20,110 85,70 150,90 215,35 290,55" fill="none" stroke="#5146b5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+     <g fill="#ff817c">
+      <circle cx="20" cy="110" r="5"/><circle cx="85" cy="70" r="5"/><circle cx="150" cy="90" r="5"/><circle cx="215" cy="35" r="5"/><circle cx="290" cy="55" r="5"/>
+     </g>
+     <g font-size="10" fill="#5146b5"><text x="10" y="132">Sen</text><text x="75" y="132">Sel</text><text x="140" y="132">Rab</text><text x="205" y="132">Kam</text><text x="280" y="132">Jum</text></g>
+    </svg>
+   </div>
+   <div class="bg-yellow-50 p-4 rounded-xl mt-5 text-sm">
+    <b>💡 Ingat!</b> Diagram batang cocok untuk membandingkan kategori. Diagram garis cocok untuk memperlihatkan tren atau perubahan dari waktu ke waktu.
+   </div>
+  </div>
+ </div>
+
+ <div id="tab2" class="tab-content">
+  <div class="card p-6">
+   <h3 class="text-xl font-bold">B. Mean (Rata-rata)</h3>
+   <div class="text-6xl text-center my-5">➗</div>
+   <p class="text-gray-600">Mean adalah jumlah seluruh nilai data dibagi banyaknya data.</p>
+   <div class="bg-purple-50 rounded-2xl p-5 text-center mt-5">
+    <div class="text-sm font-bold text-purple-700">RUMUS MEAN</div>
+    <div class="text-2xl font-black my-3">Mean = Σx / n</div>
+    <p class="text-xs text-gray-500">Σx = jumlah seluruh data, n = banyak data</p>
+   </div>
+   <h4 class="font-black mt-5">Contoh Soal</h4>
+   <p class="text-sm mt-2">Nilai ulangan: 70, 80, 90, 80, 80.</p>
+   <div class="bg-green-50 rounded-xl p-4 mt-3 text-sm leading-7">
+    Jumlah = 70 + 80 + 90 + 80 + 80 = 400<br>
+    Banyak data = 5<br>
+    Mean = 400 ÷ 5<br>
+    <b class="text-green-700">Mean = 80</b>
+   </div>
+   <div class="bg-yellow-50 p-4 rounded-xl mt-5 text-sm">
+    <b>💡 Aplikasi:</b> Mean dapat digunakan untuk mengetahui rata-rata nilai ujian, pengeluaran harian, atau produksi suatu barang.
+   </div>
+  </div>
+ </div>
+
+ <div id="tab3" class="tab-content">
+  <div class="card p-6">
+   <h3 class="text-xl font-bold">C. Median (Nilai Tengah)</h3>
+   <div class="text-6xl text-center my-5">🎯</div>
+   <p class="text-gray-600">Median adalah nilai tengah setelah seluruh data diurutkan dari terkecil ke terbesar.</p>
+   <div class="bg-purple-50 p-5 rounded-xl mt-4">
+    <b>Data ganjil</b>
+    <div class="flex gap-2 justify-center mt-3 flex-wrap">
+     <span class="bg-white p-3 rounded-lg">2</span>
+     <span class="bg-white p-3 rounded-lg">4</span>
+     <span class="bg-yellow-300 p-3 rounded-lg font-black">6</span>
+     <span class="bg-white p-3 rounded-lg">8</span>
+     <span class="bg-white p-3 rounded-lg">10</span>
+    </div>
+    <p class="text-sm mt-3">Median = 6</p>
+   </div>
+   <div class="bg-blue-50 p-5 rounded-xl mt-4">
+    <b>Data genap</b>
+    <div class="flex gap-2 justify-center mt-3 flex-wrap">
+     <span class="bg-white p-3 rounded-lg">2</span>
+     <span class="bg-yellow-300 p-3 rounded-lg font-black">4</span>
+     <span class="bg-yellow-300 p-3 rounded-lg font-black">6</span>
+     <span class="bg-white p-3 rounded-lg">8</span>
+    </div>
+    <p class="text-sm mt-3">Median = (4 + 6) ÷ 2 = 5</p>
+   </div>
+   <div class="bg-yellow-50 p-4 rounded-xl mt-5 text-sm">
+    <b>💡 Ingat!</b> Urutkan data terlebih dahulu sebelum menentukan median.
+   </div>
+  </div>
+ </div>
+
+ <div id="tab4" class="tab-content">
+  <div class="card p-6">
+   <h3 class="text-xl font-bold">D. Modus (Nilai Paling Sering Muncul)</h3>
+   <div class="text-6xl text-center my-5">🏆</div>
+   <p class="text-gray-600">Modus adalah nilai atau kategori yang paling sering muncul dalam suatu kumpulan data.</p>
+   <div class="bg-purple-50 rounded-xl p-5 mt-5">
+    <b>Contoh: Data ukuran sepatu</b>
+    <p class="mt-2 text-sm">38, 39, 40, 39, 41, 39, 40, 38</p>
+    <div class="grid grid-cols-3 gap-2 mt-4 text-center text-sm">
+     <div class="bg-white rounded-xl p-3">38<br><b>2 kali</b></div>
+     <div class="bg-yellow-300 rounded-xl p-3">39<br><b>3 kali</b></div>
+     <div class="bg-white rounded-xl p-3">40<br><b>2 kali</b></div>
+    </div>
+    <p class="mt-3 font-black text-purple-700">Modus = 39</p>
+   </div>
+   <p class="text-sm text-gray-500 mt-4">Suatu data dapat memiliki satu modus, lebih dari satu modus, atau tidak memiliki modus.</p>
+  </div>
+ </div>
+
+ <div id="tab5" class="tab-content">
+  <div class="card p-6">
+   <h3 class="text-xl font-bold">E. Interpretasi dan Penalaran Data</h3>
+   <div class="text-6xl text-center my-5">🧠</div>
+   <p class="text-gray-600">Interpretasi data adalah kegiatan membaca, memahami, dan menjelaskan informasi yang terkandung dalam data.</p>
+   <h4 class="font-black mt-5">Contoh Kasus</h4>
+   <p class="text-sm mt-2">Data penjualan buku selama 5 hari: 10, 12, 15, 20, 25 buku.</p>
+   <ul class="list-disc pl-5 mt-3 text-sm space-y-2">
+    <li>Penjualan tertinggi terjadi pada hari kelima.</li>
+    <li>Terjadi kenaikan penjualan setiap hari.</li>
+    <li>Tren penjualan menunjukkan peningkatan.</li>
+   </ul>
+   <div class="bg-green-50 p-4 rounded-xl mt-5 text-sm">
+    <b>Kesimpulan:</b> Data tidak hanya dihitung, tetapi juga digunakan untuk membuat keputusan yang masuk akal.
+   </div>
+   <h4 class="font-black mt-5">Langkah Pemecahan Masalah</h4>
+   <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3 text-center text-xs font-bold">
+    <div class="bg-purple-50 p-3 rounded-xl">1. Identifikasi</div>
+    <div class="bg-yellow-50 p-3 rounded-xl">2. Olah Data</div>
+    <div class="bg-blue-50 p-3 rounded-xl">3. Analisis</div>
+    <div class="bg-green-50 p-3 rounded-xl">4. Simpulkan</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- SIMULASI -->
+<section id="simulasi" class="page">
+ <span class="badge bg-green-100 text-green-700">04 • VIRTUAL LAB</span>
+ <h2 class="text-3xl font-bold mt-3">Laboratorium Data 🔬</h2>
+ <p class="text-gray-500 mt-2 mb-6">Ubah data dan lihat bagaimana diagram serta ukuran pemusatan berubah.</p>
+
+ <div class="card p-5">
+  <h3 class="font-bold text-lg">Simulasi 1: Generator Diagram</h3>
+  <p class="text-sm text-gray-500 mt-1">Masukkan data angka dipisahkan dengan koma.</p>
+  <label class="block text-sm font-bold mt-4 mb-2">Data pengamatan</label>
+  <input id="dataInput" class="w-full border-2 border-purple-100 rounded-xl p-3 font-bold" value="60,70,80,90,80,70,100">
+  <div class="flex flex-wrap gap-2 mt-3">
+   <button class="btn-primary" onclick="calculateData()">Analisis Data</button>
+   <button class="btn-soft" onclick="resetData()">Reset</button>
+  </div>
+
+  <div id="dataError" class="text-red-600 text-sm mt-3"></div>
+
+  <div id="dataResults" class="hidden mt-6">
+   <div class="grid grid-cols-3 gap-2">
+    <div class="bg-purple-50 p-3 rounded-xl text-center"><div class="text-xs">Mean</div><b id="meanResult" class="text-xl">-</b></div>
+    <div class="bg-yellow-50 p-3 rounded-xl text-center"><div class="text-xs">Median</div><b id="medianResult" class="text-xl">-</b></div>
+    <div class="bg-green-50 p-3 rounded-xl text-center"><div class="text-xs">Modus</div><b id="modeResult" class="text-xl">-</b></div>
+   </div>
+
+   <div class="mt-5 flex gap-2 flex-wrap">
+    <button onclick="setChart('bar')" id="barButton" class="tab-btn active">Diagram Batang</button>
+    <button onclick="setChart('line')" id="lineButton" class="tab-btn">Diagram Garis</button>
+   </div>
+   <div class="bg-purple-50 rounded-2xl p-4 mt-4">
+    <div id="chartArea" class="min-h-[210px] flex items-end justify-around gap-2 overflow-x-auto pb-5"></div>
+    <div id="chartLabels" class="flex justify-around text-xs font-bold"></div>
+   </div>
+   <p id="chartExplanation" class="text-sm text-gray-500 mt-3"></p>
+  </div>
+ </div>
+
+ <div class="card p-5 mt-5">
+  <h3 class="font-bold">Simulasi 2: Mencari Mean yang Hilang</h3>
+  <p class="text-sm text-gray-500 mt-2">Lima nilai memiliki rata-rata 80. Empat nilai pertama adalah 70, 80, 90, dan 75. Berapakah nilai kelima?</p>
+  <div class="bg-purple-50 p-4 rounded-xl mt-4">
+   <div class="font-black text-center text-xl">80 × 5 = 400</div>
+   <p class="text-sm text-center mt-2">Jumlah seluruh nilai yang diperlukan adalah 400.</p>
+   <input id="missingValue" type="number" class="w-full p-3 rounded-xl border-2 mt-4" placeholder="Masukkan nilai kelima">
+   <button onclick="checkMissing()" class="btn-primary w-full mt-3">Periksa Jawaban</button>
+   <p id="missingFeedback" class="text-sm font-bold mt-3"></p>
+  </div>
+ </div>
+
+ <div class="card p-5 mt-5">
+  <h3 class="font-bold">Proyek Mini: Survei Kelas</h3>
+  <p class="text-sm text-gray-500 mt-2">Rancang survei sederhana tentang kegiatan belajar atau kebiasaan siswa. Catat data, buat diagram, dan simpulkan hasilnya.</p>
+  <ol class="list-decimal pl-5 mt-3 text-sm space-y-2">
+   <li>Buat satu pertanyaan survei yang jelas.</li>
+   <li>Kumpulkan jawaban dari minimal 10 responden.</li>
+   <li>Kelompokkan hasil survei dalam tabel frekuensi.</li>
+   <li>Buat diagram yang sesuai.</li>
+   <li>Tentukan mean, median, atau modus jika sesuai jenis datanya.</li>
+   <li>Tuliskan kesimpulan berdasarkan bukti data.</li>
+  </ol>
+ </div>
+</section>
+
+<!-- KUIS -->
+<section id="kuis" class="page">
+ <span class="badge bg-orange-100 text-orange-700">05 • CHALLENGE TIME</span>
+ <h2 class="text-3xl font-bold mt-3">Kuis TKA Matematika 🏆</h2>
+ <p class="text-gray-500 mt-2 mb-6">Pilih tingkat tantangan sesuai kemampuanmu.</p>
+
+ <div id="quizStart" class="card p-5">
+  <h3 class="font-bold text-lg">Siapkan Dirimu, Detektif Data!</h3>
+  <label class="block text-sm font-bold mt-4 mb-2">Nama peserta untuk sertifikat</label>
+  <input id="studentName" class="w-full border-2 rounded-xl p-3" placeholder="Contoh: Shaka">
+  <p class="text-xs text-gray-400 mt-2">Masukkan nama yang akan dicetak pada sertifikat.</p>
+
+  <div class="grid md:grid-cols-3 gap-3 mt-6">
+   <div class="level-card" onclick="selectLevel('easy',this)">
+    <div class="text-4xl">🌱</div>
+    <h3 class="font-bold mt-3">Mudah</h3>
+    <p class="text-xs text-gray-500 mt-2">Konsep dasar dan pemahaman</p>
+    <span class="badge bg-green-100 text-green-700 mt-3">10 soal</span>
+   </div>
+   <div class="level-card" onclick="selectLevel('medium',this)">
+    <div class="text-4xl">🚀</div>
+    <h3 class="font-bold mt-3">Sedang</h3>
+    <p class="text-xs text-gray-500 mt-2">Penerapan dan analisis</p>
+    <span class="badge bg-yellow-100 text-yellow-700 mt-3">10 soal</span>
+   </div>
+   <div class="level-card" onclick="selectLevel('hard',this)">
+    <div class="text-4xl">🔥</div>
+    <h3 class="font-bold mt-3">Sulit</h3>
+    <p class="text-xs text-gray-500 mt-2">Penalaran dan pemecahan masalah</p>
+    <span class="badge bg-red-100 text-red-700 mt-3">10 soal</span>
+   </div>
+  </div>
+  <button onclick="startQuiz()" class="btn-primary w-full mt-6">Mulai Kuis <i class="fa-solid fa-play ml-2"></i></button>
+ </div>
+
+ <div id="quizPlay" class="hidden card p-5">
+  <div class="flex items-center justify-between gap-2">
+   <span id="quizLevel" class="badge bg-purple-100 text-purple-700"></span>
+   <button onclick="exitQuiz()" class="text-red-500 text-sm font-black"><i class="fa-solid fa-door-open"></i> Keluar / Ganti Level</button>
+  </div>
+  <div class="flex justify-between text-sm font-bold mt-5">
+   <span id="questionCount">Soal 1 dari 10</span>
+   <span>Skor: <span id="liveScore">0</span></span>
+  </div>
+  <div class="progress-track mt-2"><div id="quizProgress" class="progress-fill" style="width:10%"></div></div>
+
+  <div class="mt-7">
+   <div class="text-sm text-purple-600 font-black" id="questionIndicator">PERTANYAAN 01</div>
+   <h3 id="questionText" class="text-xl font-bold mt-3 leading-relaxed"></h3>
+   <div id="answerList" class="mt-5"></div>
+   <div id="answerFeedback" class="hidden rounded-xl p-4 text-sm mt-4"></div>
+  </div>
+  <button id="nextQuestion" onclick="nextQuiz()" class="btn-primary w-full mt-5 hidden">Soal Selanjutnya <i class="fa-solid fa-arrow-right ml-2"></i></button>
+ </div>
+
+ <div id="quizResult" class="hidden card p-5">
+  <div class="text-center">
+   <div class="text-6xl">🏆</div>
+   <h3 class="text-2xl font-bold mt-3">Tantangan Selesai!</h3>
+   <div id="resultScore" class="text-5xl font-black text-purple-700 mt-4">0</div>
+   <p id="resultMessage" class="text-gray-500 mt-2"></p>
+   <p id="resultDetail" class="text-sm font-bold mt-2"></p>
+  </div>
+  <div id="certificate" class="mt-7">
+   <div class="text-5xl">🏅</div>
+   <p class="text-xs tracking-[4px] font-black mt-4">SERTIFIKAT PENGHARGAAN</p>
+   <h2 class="text-3xl font-bold mt-4">DETektif DATA</h2>
+   <p class="text-sm mt-5">Diberikan kepada:</p>
+   <h3 id="certificateName" class="text-3xl font-bold mt-3"></h3>
+   <p class="text-sm mt-4">Telah menyelesaikan kuis TKA Matematika</p>
+   <p id="certificateLevel" class="font-black text-purple-700 mt-2"></p>
+   <p class="text-lg font-black mt-4">Nilai: <span id="certificateScore"></span></p>
+   <p class="text-xs text-gray-500 mt-6">Teruslah belajar, berpikir kritis, dan berkarya!</p>
+   <p class="text-sm font-black mt-6">SMPN 2 GANEAS</p>
+   <p class="text-xs text-gray-400">Tahun 2026</p>
+  </div>
+  <div class="flex flex-wrap gap-3 mt-6 no-print">
+   <button onclick="window.print()" class="btn-primary flex-1"><i class="fa-solid fa-print"></i> Cetak Sertifikat</button>
+   <button onclick="exitQuiz()" class="btn-soft flex-1">Pilih Level Lain</button>
+  </div>
+ </div>
+</section>
+
+<!-- GAMES -->
+<section id="games" class="page">
+ <span class="badge bg-pink-100 text-pink-700">06 • PLAY & LEARN</span>
+ <h2 class="text-3xl font-bold mt-3">Games: Pasangkan Konsep! 🎮</h2>
+ <p class="text-gray-500 mt-2 mb-6">Pilih kartu konsep kemudian pilih definisi yang tepat. Bisa menggunakan klik atau sentuhan.</p>
+
+ <div class="card p-5">
+  <div class="flex justify-between items-center">
+   <h3 class="font-bold">Statistik Matching Game</h3>
+   <span class="badge bg-purple-100 text-purple-700">5 Pasangan</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-5 mt-6">
+   <div>
+    <h4 class="font-black text-sm mb-3 text-purple-700">KOLOM A • KONSEP</h4>
+    <div id="gameTerms" class="space-y-3"></div>
+   </div>
+   <div>
+    <h4 class="font-black text-sm mb-3 text-green-700">KOLOM B • PENGERTIAN</h4>
+    <div id="gameDefinitions" class="space-y-3"></div>
+   </div>
+  </div>
+  <div class="bg-purple-50 rounded-xl p-4 mt-5 text-center">
+   <div class="font-black text-lg"><span id="gameScore">0</span> / 5 Benar</div>
+   <div class="progress-track mt-3"><div id="gameProgress" class="progress-fill" style="width:0%"></div></div>
+   <p id="gameFeedback" class="text-sm mt-3 font-bold">Pilih satu konsep untuk memulai.</p>
+  </div>
+  <button onclick="resetGame()" class="btn-primary w-full mt-4">Ulangi Permainan</button>
+ </div>
+</section>
+
+<!-- KESIMPULAN -->
+<section id="kesimpulan" class="page">
+ <span class="badge bg-blue-100 text-blue-700">07 • REFLECTION & SUMMARY</span>
+ <h2 class="text-3xl font-bold mt-3">Kesimpulan Pembelajaran ✨</h2>
+ <p class="text-gray-500 mt-2 mb-6">Mari mengingat kembali hal-hal penting yang sudah kamu pelajari.</p>
+
+ <div class="gradient-hero p-6 rounded-3xl">
+  <h3 class="text-2xl font-bold">Data Mengubah Informasi Menjadi Pengetahuan!</h3>
+  <p class="text-purple-100 mt-3">Dengan statistika, kita dapat memahami informasi, menemukan pola, dan membuat keputusan berdasarkan bukti.</p>
+ </div>
+
+ <div class="grid md:grid-cols-2 gap-4 mt-5">
+  <div class="card p-5"><div class="text-3xl">📊</div><h3 class="font-bold mt-3">Penyajian Data</h3><p class="text-sm text-gray-500 mt-2">Diagram batang untuk membandingkan kategori, diagram garis untuk menunjukkan perubahan berdasarkan waktu.</p></div>
+  <div class="card p-5"><div class="text-3xl">➗</div><h3 class="font-bold mt-3">Mean</h3><p class="text-sm text-gray-500 mt-2">Jumlah seluruh nilai dibagi banyaknya data.</p></div>
+  <div class="card p-5"><div class="text-3xl">🎯</div><h3 class="font-bold mt-3">Median</h3><p class="text-sm text-gray-500 mt-2">Nilai tengah setelah data diurutkan.</p></div>
+  <div class="card p-5"><div class="text-3xl">🏆</div><h3 class="font-bold mt-3">Modus</h3><p class="text-sm text-gray-500 mt-2">Nilai atau kategori yang paling sering muncul.</p></div>
+ </div>
+
+ <div class="card p-5 mt-5">
+  <h3 class="font-bold text-lg">Tiket Keluar (Exit Ticket)</h3>
+  <p class="text-sm text-gray-500 mt-2">Jawab pertanyaan berikut untuk memeriksa pemahamanmu.</p>
+  <div class="space-y-4 mt-4">
+   <div>
+    <p class="font-bold text-sm">1. Kapan kita menggunakan diagram garis?</p>
+    <input id="exit1" class="w-full border-2 rounded-xl p-3 mt-2" placeholder="Tuliskan jawabanmu...">
+   </div>
+   <div>
+    <p class="font-bold text-sm">2. Apa perbedaan mean dan median?</p>
+    <input id="exit2" class="w-full border-2 rounded-xl p-3 mt-2" placeholder="Tuliskan jawabanmu...">
+   </div>
+   <div>
+    <p class="font-bold text-sm">3. Mengapa data penting dalam pengambilan keputusan?</p>
+    <textarea id="exit3" class="w-full border-2 rounded-xl p-3 mt-2" rows="2" placeholder="Tuliskan jawabanmu..."></textarea>
+   </div>
+   <button onclick="submitExit()" class="btn-primary w-full">Simpan Refleksi Belajar</button>
+   <p id="exitFeedback" class="text-sm font-bold"></p>
+  </div>
+ </div>
+</section>
+
+<!-- REFLEKSI -->
+<section id="refleksi" class="page">
+ <span class="badge bg-yellow-100 text-yellow-800">08 • COLLABORATIVE BOARD</span>
+ <h2 class="text-3xl font-bold mt-3">Papan Refleksi Kolaboratif 📝</h2>
+ <p class="text-gray-500 mt-2 mb-6">Bagikan pengalamanmu selama belajar. Setiap ide berharga!</p>
+
+ <div class="card p-5">
+  <h3 class="font-bold text-lg">Tulis Sticky Note-mu</h3>
+  <form id="reflectionForm" class="mt-4 space-y-3">
+   <div>
+    <label class="text-sm font-bold">Nama siswa</label>
+    <input id="reflectionName" required class="w-full border-2 rounded-xl p-3 mt-1" placeholder="Nama kamu">
+   </div>
+   <div>
+    <label class="text-sm font-bold">Perasaan / Kesan</label>
+    <select id="reflectionFeeling" class="w-full border-2 rounded-xl p-3 mt-1">
+     <option value="😄 Senang">😄 Senang</option>
+     <option value="🤩 Sangat antusias">🤩 Sangat antusias</option>
+     <option value="🤔 Tertantang">🤔 Tertantang</option>
+     <option value="😐 Biasa saja">😐 Biasa saja</option>
+     <option value="😓 Masih bingung">😓 Masih bingung</option>
+    </select>
+   </div>
+   <div>
+    <label class="text-sm font-bold">Pesan refleksi</label>
+    <textarea id="reflectionMessage" required rows="3" class="w-full border-2 rounded-xl p-3 mt-1" placeholder="Hari ini saya belajar bahwa..."></textarea>
+   </div>
+   <button type="submit" class="btn-primary w-full"><i class="fa-solid fa-paper-plane mr-2"></i> Tempel Refleksi</button>
+  </form>
+  <p id="reflectionStatus" class="text-sm mt-3 font-bold text-green-700"></p>
+ </div>
+
+ <div class="flex items-center justify-between mt-7 mb-4">
+  <div><h3 class="font-bold text-xl">Dinding Inspirasi 💛</h3><p class="text-xs text-gray-400">Pesan dari teman-teman kelas</p></div>
+  <span id="noteCount" class="badge bg-purple-100 text-purple-700">0 catatan</span>
+ </div>
+ <div id="stickyBoard" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+ <div class="card p-5 mt-6">
+  <h3 class="font-bold"><i class="fa-solid fa-cloud-arrow-up text-purple-600"></i> Koneksi Google Spreadsheet</h3>
+  <p class="text-sm text-gray-500 mt-2">Masukkan URL Web App Apps Script sekolah untuk mengirim refleksi ke spreadsheet. Jika belum dikonfigurasi, catatan tetap tersimpan pada perangkat ini.</p>
+  <label class="block text-sm font-bold mt-4">URL Web App Google Apps Script</label>
+  <input id="gasUrl" class="w-full border-2 rounded-xl p-3 mt-2 text-sm" placeholder="Tempel URL deployment Apps Script di sini">
+  <div class="flex gap-2 mt-3 flex-wrap">
+   <button onclick="saveGasUrl()" class="btn-primary">Simpan Koneksi</button>
+   <button onclick="testGas()" class="btn-soft">Tes Koneksi</button>
+  </div>
+  <p id="gasStatus" class="text-xs text-gray-500 mt-3"></p>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center mt-12 pt-7 border-t border-purple-100">
+ <div class="text-2xl mb-2">📚 ✨ 📊</div>
+ <p class="font-black text-purple-800">MATHLAB • MEDIA PEMBELAJARAN INTERAKTIF</p>
+ <p class="text-xs text-gray-500 mt-2">Developed by Siti Sundari, M.Pd.</p>
+ <p class="text-xs text-gray-400 mt-1">SMPN 2 GANEAS • Copyright © 2026</p>
+</footer>
+</main>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav fixed bottom-0 left-0 right-0 bg-white border-t border-purple-100 z-50 justify-around py-2 shadow-lg">
+ <button onclick="showPage('home')" class="text-center text-purple-700 text-xs"><i class="fa-solid fa-house block text-xl mb-1"></i>Home</button>
+ <button onclick="showPage('materi')" class="text-center text-gray-500 text-xs"><i class="fa-solid fa-book block text-xl mb-1"></i>Materi</button>
+ <button onclick="showPage('simulasi')" class="text-center text-gray-500 text-xs"><i class="fa-solid fa-flask block text-xl mb-1"></i>Lab</button>
+ <button onclick="showPage('kuis')" class="text-center text-gray-500 text-xs"><i class="fa-solid fa-trophy block text-xl mb-1"></i>Kuis</button>
+ <button onclick="showPage('refleksi')" class="text-center text-gray-500 text-xs"><i class="fa-solid fa-note-sticky block text-xl mb-1"></i>Refleksi</button>
+</nav>
+
+<script>
+/* ===================================================
+   KONFIGURASI DAN AUDIO
+=================================================== */
+const $ = id => document.getElementById(id);
+let audioOn = true;
+let audioContext = null;
+
+function tone(freq=500,duration=.09,type='sine',volume=.06){
+ if(!audioOn)return;
+ try{
+  audioContext ||= new (window.AudioContext||window.webkitAudioContext)();
+  if(audioContext.state==='suspended')audioContext.resume();
+  const oscillator=audioContext.createOscillator();
+  const gain=audioContext.createGain();
+  oscillator.type=type;
+  oscillator.frequency.value=freq;
+  gain.gain.setValueAtTime(volume,audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+duration);
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime+duration);
+ }catch(e){}
+}
+function clickSound(){tone(550,.06)}
+function correctSound(){tone(660,.12);setTimeout(()=>tone(880,.16),110)}
+function wrongSound(){tone(190,.2,'triangle')}
+function toggleAudio(){
+ audioOn=!audioOn;
+ $('audioText').textContent=audioOn?'Audio ON':'Audio OFF';
+ $('audioButton').innerHTML=audioOn?
+ '<i class="fa-solid fa-volume-high"></i> <span id="audioText">Audio ON</span>':
+ '<i class="fa-solid fa-volume-xmark"></i> <span id="audioText">Audio OFF</span>';
+ if(audioOn)tone(600,.1);
+}
+
+/* ===================================================
+   NAVIGASI SPA
+=================================================== */
+const menus=[
+ ['home','Beranda','fa-house'],
+ ['tujuan','Tujuan Pembelajaran','fa-bullseye'],
+ ['pemantik','Pertanyaan Pemantik','fa-lightbulb'],
+ ['materi','Materi Belajar','fa-book-open'],
+ ['simulasi','Simulasi Laboratorium','fa-flask'],
+ ['kuis','Kuis Interaktif','fa-trophy'],
+ ['games','Games Edukatif','fa-gamepad'],
+ ['kesimpulan','Kesimpulan','fa-circle-check'],
+ ['refleksi','Papan Refleksi','fa-note-sticky']
+];
+
+function buildNavigation(){
+ $('sideMenu').innerHTML=menus.map(m=>`
+ <button class="navitem" data-page="${m[0]}" onclick="showPage('${m[0]}')">
+ <i class="fa-solid ${m[2]} w-5 text-center"></i><span class="text-sm">${m[1]}</span>
+ </button>`).join('');
+
+ $('homeCards').innerHTML=menus.slice(1).map((m,i)=>`
+ <div class="card menu-card p-4" onclick="showPage('${m[0]}')">
+ <div class="iconbox ${['bg-purple-100 text-purple-700','bg-yellow-100 text-yellow-700','bg-blue-100 text-blue-700','bg-green-100 text-green-700','bg-pink-100 text-pink-700'][i%5]}">
+ <i class="fa-solid ${m[2]}"></i></div>
+ <h3 class="font-black text-sm mt-3">${m[1]}</h3>
+ <p class="text-xs text-gray-400 mt-1">Klik untuk membuka</p>
+ </div>`).join('');
+}
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ $(id).classList.add('active');
+ document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('selected',b.dataset.page===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+ tone(450,.05);
+}
+function goHome(){showPage('home')}
+function reveal(id){$(id).classList.toggle('hidden');tone(650,.08)}
+function openTab(id,button){
+ document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+ document.querySelectorAll('.tab-btn').forEach(t=>{
+  if(t.closest('#materi'))t.classList.remove('active');
+ });
+ $(id).classList.add('active');
+ button.classList.add('active');
+ tone(550,.06);
+}
+
+/* ===================================================
+   CONTOH DIAGRAM
+=================================================== */
+function renderExample(){
+ const values=[5,8,6,10];
+ $('exampleBars').innerHTML=values.map(v=>`
+ <div class="flex flex-col items-center justify-end h-full flex-1">
+ <b class="text-xs mb-1">${v}</b>
+ <div class="bar w-full max-w-[45px]" style="height:${v*10}px"></div>
+ </div>`).join('');
+}
+
+/* ===================================================
+   SIMULASI STATISTIKA
+=================================================== */
+let chartType='bar';
+let currentData=[];
+
+function calculateData(){
+ const raw=$('dataInput').value.trim();
+ const values=raw.split(',').map(v=>Number(v.trim()));
+ if(!raw||values.some(v=>!Number.isFinite(v))||values.length<2){
+  $('dataError').textContent='Masukkan minimal dua angka yang valid, dipisahkan koma.';
+  $('dataResults').classList.add('hidden');
+  return;
+ }
+ if(values.length>50){
+  $('dataError').textContent='Maksimal 50 data untuk simulasi.';
+  return;
+ }
+ $('dataError').textContent='';
+ currentData=values;
+ const sorted=[...values].sort((a,b)=>a-b);
+ const mean=values.reduce((a,b)=>a+b,0)/values.length;
+ const mid=Math.floor(sorted.length/2);
+ const median=sorted.length%2?sorted[mid]:(sorted[mid-1]+sorted[mid])/2;
+ const freq={};
+ values.forEach(v=>freq[v]=(freq[v]||0)+1);
+ const maxFreq=Math.max(...Object.values(freq));
+ const modes=maxFreq===1?[]:Object.keys(freq).filter(k=>freq[k]===maxFreq).map(Number);
+ $('meanResult').textContent=mean.toFixed(2);
+ $('medianResult').textContent=median;
+ $('modeResult').textContent=modes.length?modes.join(', '):'Tidak ada';
+ $('dataResults').classList.remove('hidden');
+ renderChart();
+}
+function setChart(type){
+ chartType=type;
+ $('barButton').classList.toggle('active',type==='bar');
+ $('lineButton').classList.toggle('active',type==='line');
+ renderChart();
+}
+function renderChart(){
+ if(!currentData.length)return;
+ const values=currentData;
+ const min=Math.min(0,...values);
+ const max=Math.max(...values);
+ const range=max-min||1;
+ const height=165;
+ const points=values.map((v,i)=>{
+  const x=15+i*(290/Math.max(1,values.length-1));
+  const y=height-((v-min)/range)*130-10;
+  return [x,y];
+ });
+ if(chartType==='bar'){
+  $('chartArea').innerHTML=values.map((v,i)=>`
+   <div class="flex flex-col items-center justify-end h-[180px] flex-1 min-w-[24px]">
+   <span class="text-xs font-black mb-1">${v}</span>
+   <div class="bar w-full max-w-[35px]" style="height:${Math.max(5,(v-min+range*.12)/ (range*1.12)*135)}px"></div>
+   </div>`).join('');
+  $('chartExplanation').textContent='Diagram batang menunjukkan perbandingan nilai setiap data.';
+ }else{
+  const poly=points.map(p=>p.join(',')).join(' ');
+  $('chartArea').innerHTML=`
+   <svg viewBox="0 0 320 180" class="w-full min-w-[260px]">
+    <line x1="10" y1="165" x2="310" y2="165" stroke="#bbb" stroke-width="1"/>
+    <polyline points="${poly}" fill="none" stroke="#5146b5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    ${points.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#ff817c"/><text x="${p[0]}" y="${Math.max(10,p[1]-10)}" font-size="10" text-anchor="middle" fill="#5146b5">${values[i]}</text>`).join('')}
+   </svg>`;
+  $('chartExplanation').textContent='Diagram garis menunjukkan perubahan nilai berdasarkan urutan pengamatan.';
+ }
+ $('chartLabels').innerHTML=values.map((v,i)=>`<span class="flex-1">D${i+1}</span>`).join('');
+}
+function resetData(){
+ $('dataInput').value='60,70,80,90,80,70,100';
+ $('dataResults').classList.add('hidden');
+ $('dataError').textContent='';
+ currentData=[];
+}
+function checkMissing(){
+ const value=Number($('missingValue').value);
+ const feedback=$('missingFeedback');
+ if($('missingValue').value===''){
+  feedback.textContent='Masukkan jawaban terlebih dahulu.';
+  return;
+ }
+ if(value===85){
+  feedback.textContent='🎉 Benar! Jumlah empat nilai pertama 315, sehingga 400 - 315 = 85.';
+  feedback.className='text-sm font-bold mt-3 text-green-700';
+  correctSound();
+ }else{
+  feedback.textContent='Belum tepat. Hitung 400 - (70 + 80 + 90 + 75).';
+  feedback.className='text-sm font-bold mt-3 text-red-600';
+  wrongSound();
+ }
+}
+
+/* ===================================================
+   BANK SOAL KUIS: 3 LEVEL x 10 SOAL
+=================================================== */
+const quizBank={
+easy:[
+ {q:'Diagram yang tepat untuk membandingkan jumlah siswa berdasarkan hobi adalah ...',a:['Diagram batang','Diagram garis','Diagram lingkaran','Peta'],c:0,e:'Diagram batang digunakan untuk membandingkan frekuensi beberapa kategori.'},
+ {q:'Data: 4, 6, 8. Mean dari data tersebut adalah ...',a:['4','6','8','18'],c:1,e:'Mean = (4 + 6 + 8) ÷ 3 = 6.'},
+ {q:'Median dari 2, 4, 6, 8, 10 adalah ...',a:['4','5','6','8'],c:2,e:'Data sudah urut dan nilai tengahnya adalah 6.'},
+ {q:'Modus dari 3, 4, 4, 5, 6 adalah ...',a:['3','4','5','6'],c:1,e:'Angka 4 muncul paling banyak, yaitu dua kali.'},
+ {q:'Data yang tepat untuk disajikan dalam diagram garis adalah ...',a:['Warna kesukaan','Perubahan suhu harian','Jenis kendaraan','Hobi siswa'],c:1,e:'Diagram garis cocok untuk menunjukkan perubahan berdasarkan waktu.'},
+ {q:'Mean dari 5, 5, 10 adalah ...',a:['5','6,67','10','20'],c:1,e:'Jumlah data 20, dibagi 3 menghasilkan sekitar 6,67.'},
+ {q:'Median dari 1, 3, 5, 7 adalah ...',a:['3','4','5','6'],c:1,e:'Median data genap adalah rata-rata dua nilai tengah: (3+5)÷2 = 4.'},
+ {q:'Modus dari 2, 2, 3, 4, 4 adalah ...',a:['2 saja','4 saja','2 dan 4','Tidak ada'],c:2,e:'Angka 2 dan 4 masing-masing muncul dua kali. Keduanya adalah modus.'},
+ {q:'Jika jumlah data 50 dan banyak data 5, mean adalah ...',a:['5','10','25','55'],c:1,e:'Mean = 50 ÷ 5 = 10.'},
+ {q:'Langkah pertama menentukan median adalah ...',a:['Menjumlahkan data','Mengurutkan data','Mengalikan data','Mencari modus'],c:1,e:'Data harus diurutkan terlebih dahulu sebelum menentukan nilai tengah.'}
+],
+medium:[
+ {q:'Data penjualan: 12, 15, 18, 20, 25. Pernyataan yang benar adalah ...',a:['Nilai tertinggi 20','Data selalu menurun','Nilai tertinggi 25','Semua nilai sama'],c:2,e:'Nilai terbesar dalam data adalah 25.'},
+ {q:'Rata-rata 5 bilangan adalah 12. Jumlah seluruh bilangan adalah ...',a:['17','50','60','72'],c:2,e:'Jumlah data = mean × banyak data = 12 × 5 = 60.'},
+ {q:'Nilai ulangan 70, 80, 90, 80, 100. Median adalah ...',a:['70','80','84','90'],c:1,e:'Urutan 70, 80, 80, 90, 100. Nilai tengahnya 80.'},
+ {q:'Data 4, 5, 5, 6, 7, 7, 7, 8 memiliki modus ...',a:['5','6','7','8'],c:2,e:'Angka 7 muncul tiga kali, paling banyak.'},
+ {q:'Mean dari 60, 70, 80, 90, 100 adalah ...',a:['70','75','80','85'],c:2,e:'Jumlah 400 dibagi 5 = 80.'},
+ {q:'Empat siswa memiliki rata-rata tinggi 150 cm. Jumlah tinggi seluruh siswa adalah ...',a:['300 cm','450 cm','600 cm','750 cm'],c:2,e:'Jumlah = 150 × 4 = 600 cm.'},
+ {q:'Data 2, 3, 3, 4, 8. Ukuran yang paling terpengaruh oleh nilai 8 adalah ...',a:['Mean','Modus','Frekuensi','Kategori'],c:0,e:'Mean menggunakan seluruh nilai sehingga lebih terpengaruh oleh nilai ekstrem.'},
+ {q:'Jika data penjualan selama 5 hari terus meningkat, diagram yang tepat adalah ...',a:['Diagram garis','Peta','Tabel abjad','Diagram gambar tanpa urutan'],c:0,e:'Diagram garis memperlihatkan tren perubahan penjualan dari waktu ke waktu.'},
+ {q:'Nilai rata-rata 4 siswa adalah 75. Tiga nilai adalah 70, 80, 90. Nilai keempat adalah ...',a:['50','60','70','80'],c:1,e:'Total yang dibutuhkan 300. Jumlah tiga nilai 240. Nilai keempat = 60.'},
+ {q:'Data 10, 12, 12, 15, 20. Pernyataan yang benar adalah ...',a:['Mean 12','Median 12','Modus 15','Median 20'],c:1,e:'Data terurut dan nilai tengahnya adalah 12.'}
+],
+hard:[
+ {q:'Rata-rata 6 data adalah 12. Setelah satu data bernilai 18 dihapus, rata-rata 5 data menjadi ...',a:['10,2','10,8','11','12'],c:1,e:'Jumlah awal 72. Setelah 18 dihapus tersisa 54. Mean = 54÷5 = 10,8.'},
+ {q:'Rata-rata 5 bilangan adalah 16. Empat bilangan adalah 12, 15, 18, dan 20. Bilangan kelima adalah ...',a:['13','15','17','19'],c:2,e:'Jumlah keseluruhan 80. Jumlah empat bilangan 65. Nilai kelima 15? Mari hitung: 12+15+18+20=65, sehingga 80-65=15. Jawaban B.'},
+ {q:'Median dari 3, 5, 7, 9, 11, 13, 15, 17 adalah ...',a:['9','10','11','12'],c:1,e:'Dua nilai tengah adalah 9 dan 11. Median = (9+11)÷2 = 10.'},
+ {q:'Data 2, 4, 4, 5, 7, 7, 7, 9. Jika setiap nilai ditambah 3, modus baru adalah ...',a:['7','9','10','12'],c:2,e:'Modus awal 7. Setelah semua nilai ditambah 3, modus menjadi 10.'},
+ {q:'Rata-rata 10 siswa adalah 75. Satu siswa dengan nilai 95 bergabung. Rata-rata baru adalah ...',a:['75','76','76,82','80'],c:1,e:'Jumlah awal 750. Jumlah baru 845. Mean = 845÷11 = 76,82. Jawaban C.'},
+ {q:'Rata-rata 4 data adalah 20. Jika data 10 diganti 18, rata-rata baru menjadi ...',a:['20','21','22','23'],c:2,e:'Jumlah awal 80. Jumlah baru 88. Mean = 88÷4 = 22.'},
+ {q:'Diketahui data 5, 6, 7, x, 10 memiliki median 7 dan modus 7. Nilai x yang mungkin adalah ...',a:['5','6','7','12'],c:2,e:'Agar 7 menjadi modus dan median, nilai x harus 7.'},
+ {q:'Nilai rata-rata 8 siswa adalah 70. Dua siswa tambahan memiliki nilai 80 dan 90. Rata-rata baru adalah ...',a:['70','71','72','75'],c:2,e:'Jumlah awal 560. Ditambah 170 menjadi 730. Mean = 730÷10 = 73. Jawaban yang tepat seharusnya 73.'},
+ {q:'Data 4, 5, 5, 6, 8. Jika nilai 8 diganti 18, ukuran yang paling berubah adalah ...',a:['Modus','Median','Mean','Banyak data'],c:2,e:'Mean berubah karena nilai 18 memengaruhi jumlah seluruh data. Median dan modus tetap.'},
+ {q:'Rata-rata 5 data adalah 14. Jika empat data berjumlah 52, nilai kelima adalah ...',a:['12','15','18','20'],c:2,e:'Jumlah seluruh data = 14×5 = 70. Nilai kelima = 70−52 = 18.'}
+]};
+
+/* ===================================================
+   ENGINE KUIS
+=================================================== */
+let selectedLevel='easy',quizQuestions=[],quizIndex=0,quizScore=0,answered=false,quizName='';
+
+function selectLevel(level,el){
+ selectedLevel=level;
+ document.querySelectorAll('.level-card').forEach(c=>c.classList.remove('chosen'));
+ el.classList.add('chosen');
+ tone(600,.06);
+}
+function startQuiz(){
+ quizName=$('studentName').value.trim();
+ if(!quizName){
+  alert('Masukkan nama peserta terlebih dahulu.');
+  $('studentName').focus();
+  return;
+ }
+ quizQuestions=quizBank[selectedLevel];
+ quizIndex=0;
+ quizScore=0;
+ $('quizStart').classList.add('hidden');
+ $('quizResult').classList.add('hidden');
+ $('quizPlay').classList.remove('hidden');
+ $('quizLevel').textContent='LEVEL '+selectedLevel.toUpperCase();
+ renderQuestion();
+}
+function renderQuestion(){
+ const q=quizQuestions[quizIndex];
+ answered=false;
+ $('questionCount').textContent=`Soal ${quizIndex+1} dari 10`;
+ $('questionIndicator').textContent=`PERTANYAAN ${String(quizIndex+1).padStart(2,'0')}`;
+ $('liveScore').textContent=quizScore;
+ $('quizProgress').style.width=((quizIndex+1)/10*100)+'%';
+ $('questionText').textContent=q.q;
+ $('answerFeedback').classList.add('hidden');
+ $('nextQuestion').classList.add('hidden');
+ $('nextQuestion').textContent=quizIndex===9?'Lihat Hasil':'Soal Selanjutnya →';
+
+ $('answerList').innerHTML=q.a.map((a,i)=>`
+ <button class="answer-option" data-index="${i}" onclick="answerQuiz(${i})">
+ <span class="inline-block bg-purple-100 text-purple-700 rounded-lg px-3 py-1 mr-2">${String.fromCharCode(65+i)}</span>${a}
+ </button>`).join('');
+}
+function answerQuiz(index){
+ if(answered)return;
+ answered=true;
+ const q=quizQuestions[quizIndex];
+ const correct=index===q.c;
+ if(correct){quizScore+=10;correctSound()}else{wrongSound()}
+ document.querySelectorAll('.answer-option').forEach((b,i)=>{
+  b.disabled=true;
+  if(i===q.c)b.classList.add('correct');
+  else if(i===index)b.classList.add('wrong');
+ });
+ $('liveScore').textContent=quizScore;
+ const fb=$('answerFeedback');
+ fb.classList.remove('hidden');
+ fb.className=correct?
+ 'rounded-xl p-4 text-sm mt-4 bg-green-50 text-green-800':
+ 'rounded-xl p-4 text-sm mt-4 bg-red-50 text-red-800';
+ fb.innerHTML=(correct?'🎉 <b>Hebat! Jawaban benar.</b><br>':'💡 <b>Belum tepat.</b><br>')+q.e;
+ $('nextQuestion').classList.remove('hidden');
+}
+function nextQuiz(){
+ if(!answered)return;
+ if(quizIndex<9){quizIndex++;renderQuestion()}
+ else{finishQuiz()}
+}
+function finishQuiz(){
+ $('quizPlay').classList.add('hidden');
+ $('quizResult').classList.remove('hidden');
+ $('resultScore').textContent=quizScore;
+ const message=quizScore>=90?'Luar biasa! Kamu menguasai materi dengan sangat baik! 🌟':
+ quizScore>=70?'Bagus! Terus tingkatkan kemampuan bernalar dan analisismu! 💪':
+ 'Tetap semangat! Pelajari kembali pembahasan dan coba lagi! 🌱';
+ $('resultMessage').textContent=message;
+ $('resultDetail').textContent='Jawaban benar: '+(quizScore/10)+' dari 10 soal';
+ $('certificateName').textContent=quizName;
+ $('certificateLevel').textContent='LEVEL '+selectedLevel.toUpperCase();
+ $('certificateScore').textContent=quizScore;
+ if(quizScore>=70&&typeof confetti==='function'){
+  confetti({particleCount:140,spread:90,origin:{y:.6}});
+ }
+}
+function exitQuiz(){
+ $('quizPlay').classList.add('hidden');
+ $('quizResult').classList.add('hidden');
+ $('quizStart').classList.remove('hidden');
+}
+
+/* ===================================================
+   GAMES MATCHING
+=================================================== */
+const pairs=[
+ {term:'Mean',def:'Jumlah seluruh data dibagi banyaknya data'},
+ {term:'Median',def:'Nilai tengah setelah data diurutkan'},
+ {term:'Modus',def:'Nilai yang paling sering muncul'},
+ {term:'Diagram Batang',def:'Membandingkan frekuensi antarkategori'},
+ {term:'Diagram Garis',def:'Menunjukkan perubahan data dari waktu ke waktu'}
+];
+let selectedTerm=null,matched=new Set(),selectedDef=null;
+
+function resetGame(){
+ selectedTerm=null;selectedDef=null;matched=new Set();
+ const defs=[...pairs].sort(()=>Math.random()-.5);
+ $('gameTerms').innerHTML=pairs.map((p,i)=>`
+ <button class="game-item w-full" id="term${i}" onclick="chooseTerm(${i})">${p.term}</button>`).join('');
+ $('gameDefinitions').innerHTML=defs.map(p=>{
+  const i=pairs.findIndex(x=>x.term===p.term);
+  return `<button class="game-item w-full text-sm" id="def${i}" onclick="chooseDef(${i})">${p.def}</button>`;
+ }).join('');
+ $('gameScore').textContent='0';
+ $('gameProgress').style.width='0%';
+ $('gameFeedback').textContent='Pilih satu konsep untuk memulai.';
+}
+function chooseTerm(i){
+ if(matched.has(i))return;
+ selectedTerm=i;
+ selectedDef=null;
+ document.querySelectorAll('#gameTerms .game-item').forEach(b=>b.classList.remove('active'));
+ $('term'+i).classList.add('active');
+ tone(500,.05);
+}
+function chooseDef(i){
+ if(selectedTerm===null){
+  $('gameFeedback').textContent='Pilih konsep pada kolom A terlebih dahulu.';
+  return;
+ }
+ if(matched.has(i))return;
+ if(selectedTerm===i){
+  matched.add(i);
+  $('term'+i).classList.remove('active');
+  $('term'+i).classList.add('matched');
+  $('def'+i).classList.add('matched');
+  $('gameScore').textContent=matched.size;
+  $('gameProgress').style.width=(matched.size/5*100)+'%';
+  $('gameFeedback').textContent='Benar! Pasangan konsep sudah sesuai. 🎉';
+  correctSound();
+  if(matched.size===5){
+   $('gameFeedback').textContent='🏆 Sempurna! Kamu berhasil memasangkan semua konsep!';
+   if(typeof confetti==='function')confetti({particleCount:100,spread:70});
+  }
+ }else{
+  $('gameFeedback').textContent='Belum tepat. Coba periksa kembali pengertian konsepnya.';
+  wrongSound();
+ }
+ selectedTerm=null;
+ document.querySelectorAll('#gameTerms .game-item').forEach(b=>b.classList.remove('active'));
+}
+
+/* ===================================================
+   EXIT TICKET
+=================================================== */
+function submitExit(){
+ const a=$('exit1').value.trim(),b=$('exit2').value.trim(),c=$('exit3').value.trim();
+ if(!a||!b||!c){
+  $('exitFeedback').textContent='Lengkapi ketiga jawaban terlebih dahulu.';
+  $('exitFeedback').className='text-sm font-bold text-red-600';
+  return;
+ }
+ const entry={name:'Refleksi Belajar',feeling:'📘 Selesai belajar',message:'Diagram garis: '+a+' | Mean dan median: '+b+' | Manfaat data: '+c,date:new Date().toLocaleString('id-ID')};
+ saveNoteLocal(entry);
+ $('exitFeedback').textContent='Jawaban berhasil disimpan pada papan refleksi.';
+ $('exitFeedback').className='text-sm font-bold text-green-700';
+}
+
+/* ===================================================
+   REFLEKSI DAN PENYIMPANAN LOKAL
+=================================================== */
+const NOTE_KEY='mathlab_tka_reflections_v1';
+const GAS_KEY='mathlab_gas_url_v1';
+let notes=[];
+
+function loadNotes(){
+ try{notes=JSON.parse(localStorage.getItem(NOTE_KEY)||'[]')}
+ catch(e){notes=[]}
+ if(!notes.length){
+  notes=[
+   {name:'Shaka',feeling:'🤩 Sangat antusias',message:'Saya jadi memahami cara menentukan mean, median, dan modus. Simulasi diagramnya menyenangkan!',date:'Contoh refleksi'},
+   {name:'Haflasea',feeling:'😄 Senang',message:'Saya belajar bahwa data bisa membantu kita mengambil keputusan. Saya ingin mencoba membuat survei kelas.',date:'Contoh refleksi'}
+  ];
+ }
+ renderNotes();
+}
+function saveNoteLocal(note){
+ notes.unshift(note);
+ try{localStorage.setItem(NOTE_KEY,JSON.stringify(notes.slice(0,100)))}
+ catch(e){}
+ renderNotes();
+}
+function renderNotes(){
+ $('stickyBoard').innerHTML=notes.map(n=>`
+ <article class="sticky">
+  <div class="flex justify-between gap-2">
+   <b class="text-sm">${escapeHTML(n.name)}</b>
+   <span class="text-lg">📌</span>
+  </div>
+  <div class="text-xs mt-2 font-bold">${escapeHTML(n.feeling)}</div>
+  <p class="text-sm mt-3">${escapeHTML(n.message)}</p>
+  <div class="text-[10px] text-gray-500 mt-4">${escapeHTML(n.date||'')}</div>
+ </article>`).join('');
+ $('noteCount').textContent=notes.length+' catatan';
+}
+function escapeHTML(str){
+ return String(str).replace(/[&<>"']/g,s=>({
+  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+ })[s]);
+}
+$('reflectionForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const note={
+  name:$('reflectionName').value.trim(),
+  feeling:$('reflectionFeeling').value,
+  message:$('reflectionMessage').value.trim(),
+  date:new Date().toLocaleString('id-ID')
+ };
+ if(!note.name||!note.message)return;
+ saveNoteLocal(note);
+ $('reflectionStatus').textContent='Catatan tampil di papan dan tersimpan di perangkat.';
+ $('reflectionMessage').value='';
+ const url=getGasUrl();
+ if(url){
+  $('reflectionStatus').textContent='Catatan tersimpan lokal. Mengirim salinan ke spreadsheet...';
+  const ok=await sendToGas(note);
+  $('reflectionStatus').textContent=ok?
+   'Berhasil tersimpan lokal dan terkirim ke Google Spreadsheet.':
+   'Tersimpan lokal. Pengiriman ke spreadsheet gagal; periksa koneksi dan deployment.';
+ }
+});
+
+/* ===================================================
+   GOOGLE APPS SCRIPT CONNECTOR
+=================================================== */
+function getGasUrl(){return localStorage.getItem(GAS_KEY)||''}
+function saveGasUrl(){
+ const url=$('gasUrl').value.trim();
+ if(url&&!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(url)){
+  $('gasStatus').textContent='URL harus berupa URL Web App Google Apps Script yang berakhiran /exec.';
+  return;
+ }
+ if(url)localStorage.setItem(GAS_KEY,url);
+ else localStorage.removeItem(GAS_KEY);
+ $('gasStatus').textContent=url?'URL koneksi berhasil disimpan pada perangkat ini.':'Koneksi dihapus.';
+}
+async function sendToGas(note){
+ const url=getGasUrl();
+ if(!url)return false;
+ try{
+  await fetch(url,{
+   method:'POST',
+   mode:'no-cors',
+   headers:{'Content-Type':'text/plain;charset=utf-8'},
+   body:JSON.stringify(note)
+  });
+  return true;
+ }catch(e){return false}
+}
+async function testGas(){
+ const url=getGasUrl();
+ if(!url){
+  $('gasStatus').textContent='Masukkan dan simpan URL deployment terlebih dahulu.';
+  return;
+ }
+ $('gasStatus').textContent='Mengirim tes koneksi...';
+ const ok=await sendToGas({
+  name:'TES KONEKSI',
+  feeling:'Tes',
+  message:'Tes koneksi dari MATHLAB',
+  date:new Date().toLocaleString('id-ID')
+ });
+ $('gasStatus').textContent=ok?
+ 'Permintaan tes sudah dikirim. Periksa Google Spreadsheet untuk memastikan data masuk.':
+ 'Koneksi gagal. Periksa URL dan izin deployment Apps Script.';
+}
+
+/* ===================================================
+   INISIALISASI
+=================================================== */
+document.addEventListener('DOMContentLoaded',()=>{
+ buildNavigation();
+ renderExample();
+ calculateData();
+ resetGame();
+ loadNotes();
+ $('gasUrl').value=getGasUrl();
+ $('gasStatus').textContent=getGasUrl()?'URL Apps Script sudah tersimpan.':'Belum ada koneksi Spreadsheet. Penyimpanan lokal aktif.';
+});
+</script>
+</body>
+</html>
